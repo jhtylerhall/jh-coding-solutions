@@ -1,0 +1,12 @@
+/* src/styles/global.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'slick-carousel/slick/slick.css'; 
+@import 'slick-carousel/slick/slick-theme.css';
+
+.main-bg {
+    background-image: url('/SpaceBackground.png');
+    background-size: cover;
+    background-position: center;
+}
