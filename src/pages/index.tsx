@@ -1,5 +1,7 @@
+import * as React from "react";
 import Head from "next/head";
 import Slider from "react-slick";
+import { Collapse } from "react-collapse";
 
 export default function Home() {
   const sliderSettings = {
@@ -10,6 +12,8 @@ export default function Home() {
     slidesToScroll: 1,
   };
 
+  const [isMarketMomentOpen, setIsMarketMomentOpen] = React.useState(false);
+
   return (
     <>
       <Head>
@@ -19,9 +23,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="main-bg min-h-screen p-8">
-        <h1 className="text-3xl font-bold mb-4">About Me</h1>
-        <section className="bg-white bg-opacity-50 p-8 rounded-lg shadow-md">
-          <p className="text-lg mb-4">
+        <h1 className="text-3xl text-white font-bold mb-4">About Me</h1>
+        <section className="bg-white bg-opacity-0 p-8 rounded-lg shadow-md">
+          <p className="text-lg text-white mb-4">
             As a dedicated full-stack developer, my journey in coding has always
             been driven by a desire to understand and harness the frontier
             technologies. Currently, I find myself captivated by the untapped
@@ -39,68 +43,112 @@ export default function Home() {
             both my technical expertise and creative problem-solving skills.
           </p>
         </section>
-        <h1 className="text-3xl font-bold my-4">My Projects</h1>
+        <h1 className="text-3xl text-white font-bold my-4">My Projects</h1>
 
-        <section className="bg-white bg-opacity-50 p-8 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-2">Market Moment</h2>
-          <p className="text-lg mb-4">
-            Where a picture is worth a thousand words.
-          </p>
-          <Slider {...sliderSettings}>
-            <div className="flex flex-col items-center">
-              <img
-                className="w-full h-100 object-cover rounded-lg mb-4"
-                src="/MarketMomentHomePage.png"
-                alt="Market moment home page"
-              />
-              <p className="text-md">
-                Generate an image based representation of a stocks movement for
-                that day.
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <img
-                className="w-full h-100 object-cover rounded-lg mb-4"
-                src="/MarketMomentImagePromptGeneration.png"
-                alt="Generated image displayed"
-              />
-              <p className="text-md">
-                I use ChatGPT for text-to-image prompts.
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <img
-                className="w-full h-100 object-cover rounded-lg mb-4"
-                src="/LightsaberExample.png"
-                alt="Generated image displayed"
-              />
-              <p className="text-md">
-                Stable Diffusion does the image generation.
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <img
-                className="w-full h-100 object-cover rounded-lg mb-4"
-                src="/MarketMomentGenerationExample.png"
-                alt="Generated image displayed"
-              />
-              <p className="text-md">
-                Regenerating prompt results in different images.
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <img
-                className="w-full h-100 object-cover rounded-lg mb-4"
-                src="/PhoneExample.png"
-                alt="Generated image displayed"
-              />
-              <p className="text-md">
-                Hard for it to generate product images, results are mixed but
-                interesting.
-              </p>
-            </div>
-            {/* Add more images here */}
-          </Slider>
+        <section className="bg-white bg-opacity-0 p-8 rounded-lg shadow-md">
+          <div className="flex items-center">
+            <h2 className="text-2xl font-semibold text-white mb-2">
+              Market Moment
+            </h2>
+            <button
+              className="ml-2 text-sm text-white hover:text-blue-700"
+              onClick={() => setIsMarketMomentOpen(!isMarketMomentOpen)}
+            >
+              {isMarketMomentOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 15.75l7.5-7.5 7.5 7.5"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
+          <Collapse isOpened={isMarketMomentOpen}>
+            <p className="text-lg text-white mb-4">
+              Where a picture is worth a thousand words.
+            </p>
+            <Slider {...sliderSettings}>
+              <div className="flex flex-col items-center">
+                <p className="text-md text-white">
+                  Image if you wanted to generate an image based representation
+                  of a stocks movement for that day. If the stock tanks then
+                  generate a sad image while if it gains more than average then
+                  celebrate it with an image.
+                </p>
+                <img
+                  className="w-full h-100 object-cover rounded-lg mb-4"
+                  src="/MarketMomentHomePage.png"
+                  alt="Market moment home page"
+                />
+              </div>
+              <div className="flex flex-col items-center">
+                <p className="text-md text-white">
+                  I use ChatGPT for text-to-image prompts.
+                </p>
+                <img
+                  className="w-full h-100 object-cover rounded-lg mb-4"
+                  src="/MarketMomentImagePromptGeneration.png"
+                  alt="Generated image displayed"
+                />
+              </div>
+              <div className="flex flex-col items-center">
+                <img
+                  className="w-full h-100 object-cover rounded-lg mb-4"
+                  src="/LightsaberExample.png"
+                  alt="Generated image displayed"
+                />
+                <p className="text-md text-white">
+                  Stable Diffusion does the image generation.
+                </p>
+              </div>
+              <div className="flex flex-col items-center">
+                <p className="text-md text-white">
+                  Regenerating prompt results in different images.
+                </p>
+                <img
+                  className="w-full h-100 object-cover rounded-lg mb-4"
+                  src="/MarketMomentGenerationExample.png"
+                  alt="Generated image displayed"
+                />
+              </div>
+              <div className="flex flex-col items-center">
+                <p className="text-md text-white">
+                  Hard for it to generate product images, results are mixed but
+                  interesting.
+                </p>
+                <img
+                  className="w-full h-100 object-cover rounded-lg mb-4"
+                  src="/PhoneExample.png"
+                  alt="Generated image displayed"
+                />
+              </div>
+              {/* Add more images here */}
+            </Slider>
+          </Collapse>
         </section>
       </main>
     </>

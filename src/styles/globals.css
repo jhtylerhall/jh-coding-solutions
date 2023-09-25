@@ -6,7 +6,7 @@
 @import 'slick-carousel/slick/slick-theme.css';
 
 .main-bg {
-    background-image: url('/SpaceBackground.png');
-    background-size: cover;
-    background-position: center;
+    background-image: url('/DarkBackground.png');
+    background-size: auto;
+    background-position: top left;
 }
